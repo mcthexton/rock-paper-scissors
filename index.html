@@ -11,7 +11,7 @@
 let humanScore = 0
 let computerScore = 0
 
-/* randomly return rock, paper, scissors */
+/* randomly return rock, paper, scissors for computer */
     
 function getComputerChoice() {
     const randomNumber = Math.floor(Math.random() * 3)
@@ -37,33 +37,8 @@ function getComputerChoice() {
     }
 } */
 
-let results = document.createElement("div")
-
-const btnRock = document.createElement("button")
-btnRock.setAttribute("id", "Rock")
-btnRock.textContent = "Rock"
-document.body.appendChild(btnRock)
-
-const btnPaper = document.createElement("button")
-btnPaper.setAttribute("id", "Paper")
-btnPaper.textContent = "Paper"
-document.body.appendChild(btnPaper)
-
-const btnScissors = document.createElement("button")
-btnScissors.setAttribute("id", "Scissors")
-btnScissors.textContent = "Scissors"
-document.body.appendChild(btnScissors)
-
-const buttons = document.querySelectorAll("button")
-
-buttons.forEach((button) => {
-    button.addEventListener("click", () => {
-        const humanChoice = button.id;
-        const computerChoice = getComputerChoice()
-        playRound(humanChoice, computerChoice)
-        console.log(playRound())
-    })
-})
+let humanChoice
+let computerChoice
 
 /* play round */
 
@@ -87,7 +62,36 @@ function playRound(humanChoice, computerChoice) {
     return computerScore;
 }
 
-console.log(playRound())
+const btnRock = document.createElement("button")
+btnRock.setAttribute("id", "Rock")
+btnRock.textContent = "Rock"
+document.body.appendChild(btnRock)
+
+const btnPaper = document.createElement("button")
+btnPaper.setAttribute("id", "Paper")
+btnPaper.textContent = "Paper"
+document.body.appendChild(btnPaper)
+
+const btnScissors = document.createElement("button")
+btnScissors.setAttribute("id", "Scissors")
+btnScissors.textContent = "Scissors"
+document.body.appendChild(btnScissors)
+
+const buttons = document.querySelectorAll("button")
+
+buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+        const humanChoice = button.id;
+        const computerChoice = getComputerChoice()
+        playRound(humanChoice, computerChoice)
+    })
+})
+
+
+
+let results = document.createElement("div")
+document.body.appendChild(results)
+
 
 
 /* play game */
