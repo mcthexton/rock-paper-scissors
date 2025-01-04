@@ -44,19 +44,10 @@ function playRound(humanChoice, computerChoice) {
         computerScore++
         results.innerHTML = `You lose! ${computerChoice} beats ${humanChoice}`
     }
-    return humanScore
-    return computerScore
 }
 
-/* function playGame() {
-    for (let i = 0; i < 5; i++) {
-        playRound();
-        console.log(humanScore);
-        console.log(computerScore)
-    }
-}
-
-playGame(); */
+let results = document.createElement("div")
+document.body.appendChild(results)
 
 const btnRock = document.createElement("button")
 btnRock.setAttribute("id", "Rock")
@@ -64,7 +55,7 @@ btnRock.textContent = "Rock"
 document.body.appendChild(btnRock)
 
 const btnPaper = document.createElement("button")
-btnPaper.setAttribute("id", "Paper")
+btnPaper.setAttribute("id", "Paper", "value", "Paper")
 btnPaper.textContent = "Paper"
 document.body.appendChild(btnPaper)
 
@@ -73,33 +64,35 @@ btnScissors.setAttribute("id", "Scissors")
 btnScissors.textContent = "Scissors"
 document.body.appendChild(btnScissors)
 
-const buttons = document.querySelectorAll("button")
-
 btnRock.addEventListener("click", function() {
-    playRound("Rock", computerChoice)
+    playGame("Rock")
 })
 
 btnPaper.addEventListener("click", function() {
-    playRound("Paper", computerChoice)
+    playGame("Paper")
 })
 
 btnScissors.addEventListener("click", function() {
-    playRound("Scissors", computerChoice)
-})
+    playGame("Scissors")
+})    
 
-let results = document.createElement("div")
-document.body.appendChild(results)
+let runningScore = document.createElement("div")
+document.body.appendChild(runningScore)
 
-/* buttons.forEach((button) => {
-    button.addEventListener("click", () => {
-        const humanChoice = button.id;
-        const computerChoice = getComputerChoice()
-        playRound(humanChoice, computerChoice)
-        let runningScore = document.createElement("div")
-        document.body.appendChild(runningScore) 
-        runningScore.innerHTML = `You're Score: ${humanScore} vs. Computer Score: ${computerScore}`
-    })
-}) */ 
+let gameResult = document.createElement("div")
+document.body.appendChild(gameResult)
+
+function playGame(humanChoice) {
+    playRound(humanChoice, computerChoice)
+    runningScore.innerHTML = `You're Score: ${humanScore} vs. Computer Score: ${computerScore}`
+    if (humanScore === 5) {
+        gameResult.innerHTML = "Congratulations! You won!"
+    } else if (computerScore === 5) {
+        gameResult.innerHTML = "You lose"
+    }
+}
+
+playGame()
 
 </script>    
 </body>
